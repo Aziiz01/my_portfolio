@@ -7,121 +7,121 @@
 /**
  * Components
  */
-import SkillCard from "./SkillCard";
+import SkillMap from "./skill-map/SkillMap";
 
 const skillItem = [
   {
-    imgSrc: 'https://simpleicons.org/icons/openai.svg',
+    imgSrc: '/images/openai.svg',
     label: 'Open AI',
     desc: 'AI Solutions'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/css3.svg',
+    imgSrc: '/images/css3.svg',
     label: 'CSS',
     desc: 'User Interface'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/javascript.svg',
+    imgSrc: '/images/javascript.svg',
     label: 'JavaScript',
     desc: 'Interaction'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/nodedotjs.svg',
+    imgSrc: '/images/nodejs.svg',
     label: 'NodeJS',
     desc: 'Web Server'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/express.svg',
+    imgSrc: '/images/expressjs.svg',
     label: 'ExpressJS',
     desc: 'Node Framework'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/mongodb.svg',
+    imgSrc: '/images/mongodb.svg',
     label: 'MongoDB',
     desc: 'Database'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/react.svg',
+    imgSrc: '/images/react.svg',
     label: 'React',
     desc: 'Frontend Framework'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/tailwindcss.svg',
+    imgSrc: '/images/tailwindcss.svg',
     label: 'TailwindCSS',
     desc: 'Styling Framework'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/spring.svg',
+    imgSrc: '/images/springboot.svg',
     label: 'Spring Boot',
     desc: 'Backend Framework'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/sourcetree.svg',
+    imgSrc: '/images/sourcetree.svg',
     label: 'SourceTree',
     desc: 'Git GUI'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/jira.svg',
+    imgSrc: '/images/jira.svg',
     label: 'Jira',
     desc: 'Project Management'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/python.svg',
+    imgSrc: '/images/python.svg',
     label: 'Python',
     desc: 'Scripting & AI'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/vercel.svg',
+    imgSrc: '/images/vercel.svg',
     label: 'Vercel',
     desc: 'Website hosting'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/git.svg',
+    imgSrc: '/images/git.svg',
     label: 'Git',
     desc: 'Version Control'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/html5.svg',
+    imgSrc: '/images/html5.svg',
     label: 'HTML',
     desc: 'Web Structure'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/bootstrap.svg',
+    imgSrc: '/images/bootstrap.svg',
     label: 'Bootstrap',
     desc: 'UI Framework'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/postgresql.svg',
+    imgSrc: '/images/postgresql.svg',
     label: 'PostgreSQL',
     desc: 'Database'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/docker.svg',
+    imgSrc: '/images/docker.svg',
     label: 'Docker',
     desc: 'Containerization'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/tsnode.svg',
+    imgSrc: '/images/vscode.svg',
     label: 'VS Code',
     desc: 'Code Editor'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/phpstorm.svg',
+    imgSrc: '/images/phpstorm.svg',
     label: 'PhpSorm',
     desc: 'Code Editor'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/npm.svg',
+    imgSrc: '/images/npm.svg',
     label: 'NPM',
     desc: 'Package Manager'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/flask.svg',
+    imgSrc: '/images/flask.svg',
     label: 'Flask',
     desc: 'Python Framework'
   },
   {
-    imgSrc: 'https://simpleicons.org/icons/jenkins.svg',
+    imgSrc: '/images/jenkins.svg',
     label: 'Jenkins',
     desc: 'Devops & Testing'
   }
@@ -141,19 +141,7 @@ const Skill = () => {
           Discover the powerful tools and technologies I use to create exceptional, high-performing websites & applications.
         </p>
 
-        <div className="grid gap-3 grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]">
-          {
-            skillItem.map(({ imgSrc, label, desc }, key) => (
-              <SkillCard
-                key={key}
-                imgSrc={imgSrc}
-                label={label}
-                desc={desc}
-                classes="reveal-up"
-              />
-            ))
-          }
-        </div>
+        <SkillMap skills={skillItem} />
 
       </div>
     </section>
