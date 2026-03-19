@@ -32,6 +32,8 @@ import Review from "./components/Review";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import EducationSection from "./components/EducationSection";
+import CustomCursor from "./components/CustomCursor";
+import AlgorithmVisualizer from "./components/AlgorithmVisualizer";
 
 const InternshipGlobe = lazy(() => import('./components/InternshipGlobe'));
 
@@ -39,6 +41,9 @@ const App = () => {
 /* <Review />*/
   useGSAP(() => {
     const elements = gsap.utils.toArray('.reveal-up');
+    const revealLeft = gsap.utils.toArray('.reveal-left');
+    const revealRight = gsap.utils.toArray('.reveal-right');
+    const parallaxItems = gsap.utils.toArray('.parallax-soft');
 
     elements.forEach((element) => {
       gsap.to(element, {
@@ -54,15 +59,62 @@ const App = () => {
         ease: 'power2.out'
       })
     });
+
+    revealLeft.forEach((element) => {
+      gsap.fromTo(
+        element,
+        { x: -40, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: element, start: 'top 85%' }
+        }
+      );
+    });
+
+    revealRight.forEach((element) => {
+      gsap.fromTo(
+        element,
+        { x: 40, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: element, start: 'top 85%' }
+        }
+      );
+    });
+
+    parallaxItems.forEach((element) => {
+      gsap.fromTo(
+        element,
+        { yPercent: -7 },
+        {
+          yPercent: 7,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        }
+      );
+    });
   });
 
   return (
     <ReactLenis root>
+      <CustomCursor />
       <Header />
       <main>
         <Hero />
         <About />
         <Skill />
+        <AlgorithmVisualizer />
         <EducationSection />
         <Suspense fallback={null}>
           <InternshipGlobe />

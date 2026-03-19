@@ -54,6 +54,11 @@ const Navbar = ({ navOpen }) => {
       className: 'nav-link'
     },
     {
+      label: 'Algorithms',
+      link: '#algorithms',
+      className: 'nav-link'
+    },
+    {
       label: 'Education',
       link: '#education',
       className: 'nav-link'
