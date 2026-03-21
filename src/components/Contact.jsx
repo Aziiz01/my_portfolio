@@ -2,13 +2,17 @@
  * @copyright 2024 
  * @license Apache-2.0
  */
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+import 'react-toastify/dist/ReactToastify.css';
+import { SITE_LINKS } from '../data/siteLinks';
+import { EMAILJS_CONFIG } from '../data/emailjsConfig';
+import FormSuccessMessage from './FormSuccessMessage';
+
 const socialLinks = [
   {
-    href: 'https://github.com/Aziiz01',
+    href: SITE_LINKS.github,
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -20,7 +24,7 @@ const socialLinks = [
     alt: 'GitHub',
   },
   {
-    href: 'https://www.linkedin.com/in/mohamed-aziz-nacib/',
+    href: SITE_LINKS.linkedin,
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -35,35 +39,35 @@ const socialLinks = [
 
 const Contact = () => {
   const form = useRef();
+  const [submitted, setSubmitted] = useState(false);
+  const [hasReset, setHasReset] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
       .sendForm(
-        'service_zolr81d', // Replace with your EmailJS Service ID
-        'template_g1jwi9b', // Replace with your EmailJS Template ID
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
         form.current,
-        'xwznJDRYsjRBRkwLw' // Replace with your EmailJS Public Key
+        EMAILJS_CONFIG.publicKey
       )
-      .then(
-        (result) => {
-          console.log('Email sent successfully:', result.text);
-          toast('Message sent successfully!', {
-            position: 'top-right',
-            autoClose: 2000, // Show for 2 seconds before reload
-            onClose: () => window.location.reload(), // Reload after toast closes
-          });
-          window.location.reload();
-                    form.current.reset(); // Clear form after submission
-        },
-        (error) => {
-          console.error('Email failed to send:', error.text);
-          toast.error('Failed to send message. Try again.', {
-            position: 'top-right',
-            autoClose: 3000,
-          });        }
-      );
+      .then(() => {
+        setSubmitted(true);
+        form.current.reset();
+      })
+      .catch((error) => {
+        console.error('Email failed to send:', error.text);
+        toast.error('Failed to send message. Try again.', {
+          position: 'top-right',
+          autoClose: 3000,
+        });
+      });
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
+    setHasReset(true);
   };
 
   return (
@@ -90,53 +94,64 @@ const Contact = () => {
           </div>
         </div>
 
-        <form ref={form} onSubmit={sendEmail} className="xl:pl-10 2xl:pl-20">
-          <div className="md:grid md:items-center md:grid-cols-2 md:gap-2">
-            <div className="mb-4">
-              <label htmlFor="name" className="label reveal-up">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                autoComplete="name"
-                required
-                placeholder="Elon"
-                className="text-field reveal-up"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="label reveal-up">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                autoComplete="email"
-                required
-                placeholder="Elon@musk.com"
-                className="text-field reveal-up"
-              />
-            </div>
-          </div>
-          <div className="mb-4">
-            <label htmlFor="message" className="label reveal-up">
-              Message
-            </label>
-            <textarea
-              name="message"
-              id="message"
-              placeholder="Hi!"
-              required
-              className="text-field resize-y min-h-32 max-h-80 reveal-up"
-            ></textarea>
-          </div>
-          <button type="submit" className="btn btn-primary [&]:max-w-full w-full justify-center reveal-up">
-            Submit
-          </button>
-        </form>
+        <div className="xl:pl-10 2xl:pl-20">
+          {submitted ? (
+            <FormSuccessMessage
+              message="Message sent!"
+              subtext="I'll get back to you soon."
+              onSendAnother={resetForm}
+              accentColor="sky"
+            />
+          ) : (
+            <form ref={form} onSubmit={sendEmail} className={hasReset ? 'reveal-up-skip' : ''}>
+              <div className="md:grid md:items-center md:grid-cols-2 md:gap-2">
+                <div className="mb-4">
+                  <label htmlFor="name" className="label reveal-up">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    autoComplete="name"
+                    required
+                    placeholder="Elon"
+                    className="text-field reveal-up"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="email" className="label reveal-up">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    autoComplete="email"
+                    required
+                    placeholder="Elon@musk.com"
+                    className="text-field reveal-up"
+                  />
+                </div>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="message" className="label reveal-up">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Hi!"
+                  required
+                  className="text-field resize-y min-h-32 max-h-80 reveal-up"
+                ></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary [&]:max-w-full w-full justify-center reveal-up">
+                Submit
+              </button>
+            </form>
+          )}
+        </div>
       </div>
     </section>
   );
