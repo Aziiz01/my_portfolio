@@ -77,6 +77,11 @@ const Navbar = ({ navOpen }) => {
       label: 'Contact',
       link: '#contact',
       className: 'nav-link md:hidden'
+    },
+    {
+      label: 'Rate me',
+      link: '#feedback',
+      className: 'nav-link md:hidden'
     }
    /* {
       label: 'Reviews',

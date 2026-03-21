@@ -50,12 +50,17 @@ const Header = () => {
           <Navbar navOpen={navOpen} />
         </div>
 
-        <a
-          href="#contact"
-          className="btn btn-secondary max-md:hidden md:justify-self-end"
-        >
-          Contact Me
-        </a>
+        <div className="flex items-center gap-2 max-md:hidden md:justify-self-end">
+          <a href="#contact" className="btn btn-secondary">
+            Contact Me
+          </a>
+          <a
+            href="#feedback"
+            className="btn bg-zinc-950 text-zinc-50 ring-zinc-700 hover:bg-zinc-900 hover:text-white"
+          >
+            Rate me
+          </a>
+        </div>
 
       </div>
     </header>

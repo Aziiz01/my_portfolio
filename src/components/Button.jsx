@@ -19,14 +19,20 @@ const ButtonPrimary = ({
   target = '_self',
   label,
   icon,
-  classes
+  classes,
+  rel,
+  download
 }) => {
+  const linkRel = rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined);
+
   if (href) {
     return (
       <a
         href={href}
         target={target}
-        className={"btn btn-primary " + classes}
+        rel={linkRel}
+        download={download}
+        className={'btn btn-primary ' + (classes || '')}
       >
         {label}
 
@@ -59,7 +65,9 @@ ButtonPrimary.propTypes = {
   href: PropTypes.string,
   target: PropTypes.string,
   icon: PropTypes.string,
-  classes: PropTypes.string
+  classes: PropTypes.string,
+  rel: PropTypes.string,
+  download: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 }
 
 
@@ -72,14 +80,20 @@ const ButtonOutline = ({
   target = '_self',
   label,
   icon,
-  classes
+  classes,
+  rel,
+  download
 }) => {
+  const linkRel = rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined);
+
   if (href) {
     return (
       <a
         href={href}
         target={target}
-        className={"btn btn-outline " + classes}
+        rel={linkRel}
+        download={download}
+        className={'btn btn-outline ' + (classes || '')}
       >
         {label}
 
@@ -112,7 +126,9 @@ ButtonOutline.propTypes = {
   href: PropTypes.string,
   target: PropTypes.string,
   icon: PropTypes.string,
-  classes: PropTypes.string
+  classes: PropTypes.string,
+  rel: PropTypes.string,
+  download: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 }
 
 export {
