@@ -8,6 +8,7 @@
  * Components
  */
 import { ButtonPrimary } from "./Button";
+import { SITE_LINKS } from "../data/siteLinks";
 
 
 const sitemap = [
@@ -30,19 +31,22 @@ const sitemap = [
   {
     label: 'Contact me',
     href: '#contact'
+  },
+  {
+    label: 'Rate site',
+    href: '#feedback'
   }
 ];
 
 const socials = [
   {
     label: 'GitHub',
-    href: 'https://github.com/Aziiz01'
+    href: SITE_LINKS.github
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/mohamed-aziz-nacib/'
+    href: SITE_LINKS.linkedin
   },
- 
 ];
 
 
@@ -121,7 +125,7 @@ const Footer = () => {
           </a>
 
           <p className="text-zinc-500 text-sm reveal-up">
-            &copy; 2024 <span className="text-zinc-200"></span>
+            &copy; 2026 <span className="text-zinc-200"></span>
           </p>
         </div>
 

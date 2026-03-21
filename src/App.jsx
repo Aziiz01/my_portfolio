@@ -30,9 +30,9 @@ import Skill from "./components/Skill";
 import Work from "./components/Work";
 import Review from "./components/Review";
 import Contact from "./components/Contact";
+import SiteFeedback from "./components/SiteFeedback";
 import Footer from "./components/Footer";
 import EducationSection from "./components/EducationSection";
-import CustomCursor from "./components/CustomCursor";
 // import AlgorithmVisualizer from "./components/AlgorithmVisualizer";
 
 const InternshipGlobe = lazy(() => import('./components/InternshipGlobe'));
@@ -40,6 +40,9 @@ const InternshipGlobe = lazy(() => import('./components/InternshipGlobe'));
 const App = () => {
 /* <Review />*/
   useGSAP(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
     const elements = gsap.utils.toArray('.reveal-up');
     const revealLeft = gsap.utils.toArray('.reveal-left');
     const revealRight = gsap.utils.toArray('.reveal-right');
@@ -108,7 +111,6 @@ const App = () => {
 
   return (
     <ReactLenis root>
-      <CustomCursor />
       <Header />
       <main>
         <Hero />
@@ -123,6 +125,7 @@ const App = () => {
         </Suspense>
         <Work />
         <Contact />
+        <SiteFeedback />
       </main>
       <Footer />
     </ReactLenis>

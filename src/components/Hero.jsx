@@ -8,6 +8,7 @@
  * Components
  */
 import { ButtonPrimary, ButtonOutline } from "./Button";
+import { SITE_LINKS } from "../data/siteLinks";
 import "./hero.css";
 
 const Hero = () => {
@@ -46,9 +47,24 @@ const Hero = () => {
             Computer Science engineer with international experience, focused on building scalable web applications.
           </p>
 
-          <div className="flex items-center gap-3">
-           
-
+          <div className="flex flex-wrap items-center gap-3">
+            <ButtonPrimary
+              href={SITE_LINKS.resume}
+              label="Resume"
+              icon="description"
+              download="Mohamed-Aziz-Nacib-CV.pdf"
+            />
+            <ButtonOutline
+              href={SITE_LINKS.github}
+              target="_blank"
+              label="GitHub"
+              icon="code"
+            />
+            <ButtonOutline
+              href={SITE_LINKS.contact}
+              label="Contact"
+              icon="mail"
+            />
             <ButtonOutline
               href="#about"
               label="Scroll down"
@@ -63,8 +79,8 @@ const Hero = () => {
               src="/images/mepng.png"
               width={656}
               height={800}
-              alt="aziz-portfolio"
-                                      />
+              alt="Mohamed Aziz — portrait"
+            />
           </figure>
         </div>
 
