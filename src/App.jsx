@@ -33,7 +33,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import EducationSection from "./components/EducationSection";
 import CustomCursor from "./components/CustomCursor";
-import AlgorithmVisualizer from "./components/AlgorithmVisualizer";
+// import AlgorithmVisualizer from "./components/AlgorithmVisualizer";
 
 const InternshipGlobe = lazy(() => import('./components/InternshipGlobe'));
 
@@ -114,7 +114,9 @@ const App = () => {
         <Hero />
         <About />
         <Skill />
+        {/* Algorithm visualizer section (disabled)
         <AlgorithmVisualizer />
+        */}
         <EducationSection />
         <Suspense fallback={null}>
           <InternshipGlobe />
