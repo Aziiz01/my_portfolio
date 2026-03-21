@@ -53,11 +53,11 @@ const Navbar = ({ navOpen }) => {
       link: '#skills',
       className: 'nav-link'
     },
-    {
-      label: 'Algorithms',
-      link: '#algorithms',
-      className: 'nav-link'
-    },
+    // {
+    //   label: 'Algorithms',
+    //   link: '#algorithms',
+    //   className: 'nav-link'
+    // },
     {
       label: 'Education',
       link: '#education',
