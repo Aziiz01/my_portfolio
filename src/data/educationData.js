@@ -30,10 +30,5 @@ export const educationData = {
       institution: 'ESPRIT School of Engineering',
       emphasized: true
     }
-  ],
-  stats: [
-    { label: 'General Average', value: '15.17 / 20' },
-    { label: 'Final Year Project', value: '16.72 / 20' },
-    { label: 'Engineering Internship', value: '17 / 20' }
   ]
 };
