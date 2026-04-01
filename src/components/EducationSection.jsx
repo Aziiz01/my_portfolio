@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 import TimelineItem from './education/TimelineItem';
 import GraduationCard from './education/GraduationCard';
-import StatCard from './education/StatCard';
 import { educationData } from '../data/educationData';
 
 const EducationSection = () => {
@@ -38,26 +37,8 @@ const EducationSection = () => {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="mt-10">
           <GraduationCard education={educationData} />
-
-          <div className="rounded-2xl border border-zinc-700/60 bg-zinc-800/35 p-5">
-            <p className="text-sm text-zinc-400">Academic Results</p>
-            <ul className="mt-3 space-y-2 text-sm text-zinc-200">
-              {educationData.stats.map((stat) => (
-                <li key={stat.label} className="flex items-start justify-between gap-2">
-                  <span>{stat.label}</span>
-                  <span className="text-sky-300">{stat.value}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {educationData.stats.map((stat) => (
-            <StatCard key={stat.label} label={stat.label} value={stat.value} />
-          ))}
         </div>
       </div>
     </section>

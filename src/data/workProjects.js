@@ -1,21 +1,38 @@
+/**
+ * Selected work for the portfolio.
+ *
+ * Note: There is no public GitHub repository named "Recruiter" on github.com/Aziiz01.
+ * **ResuMatch** is the project that matches résumés to job postings (recruiting / hiring workflow).
+ * Sources: README.md in Aziiz01/ResuMatch and Aziiz01/Flous.
+ */
+
 export const workProjects = [
   {
-    imgSrc: '/images/micro.jpg',
-    title: 'AI-Powered LMS Backend',
+    imgSrc: '/images/flous.jpg',
+    title: 'Flous',
     description:
-      'Microservices architecture for a learning platform: REST APIs, service boundaries, and deployment pipelines built for scale and maintainability.',
-    tags: ['Spring Boot', 'Docker', 'Microservices', 'API'],
-    projectLink: 'https://github.com/Aziiz01/Backend_web_MS/tree/aziz',
-    linkLabel: 'View on GitHub',
+      'Playful 3D visualization of Tunisian dinar (TND): enter an amount and denomination (10 / 20 / 50 TND) and watch stacks of bills build in a full-screen Three.js scene with GSAP-driven motion. Includes scale comparisons to real-world references, rough purchasing-power estimates (educational only), optional EmailJS feedback, and shareable URL state via query parameters.',
+    tags: ['React', 'Three.js', 'GSAP', 'Tailwind CSS'],
+    projectLink: 'https://flous-six.vercel.app',
+    linkLabel: 'Live demo',
   },
   {
-    imgSrc: '/images/coffe.jpg',
-    title: 'Code-Cafe',
+    imgSrc: '/images/resumatch.jpg',
+    title: 'ResuMatch',
     description:
-      'Full-stack cafe experience with a clean SPA frontend and a structured API layer for menus, orders, and real-world CRUD flows.',
-    tags: ['React', 'REST API', 'SPA'],
-    projectLink: 'https://github.com/Aziiz01/code-cafe',
-    linkLabel: 'View on GitHub',
+      'Web app that compares your résumé with a job description: surfaces skill overlap, suggests CV improvements using Hugging Face inference (embeddings and text generation when configured), and ships a LaTeX CV builder with live HTML preview (LaTeX.js) plus downloadable .tex for local compilation. Built with the Next.js App Router, React 19, and TypeScript.',
+    tags: ['Next.js', 'TypeScript', 'Hugging Face', 'LaTeX'],
+    projectLink: 'https://resu-match-eight.vercel.app/',
+    linkLabel: 'Live demo',
+  },
+  {
+    imgSrc: '/images/f2.png',
+    title: "Elite — Women's Fashion & Makeup",
+    description:
+      'Production-oriented storefront: React and Node stack with MongoDB, emphasizing product discovery, checkout paths, and deployable full-stack structure.',
+    tags: ['React', 'Node.js', 'MongoDB', 'Ecommerce'],
+    projectLink: 'https://elite-ecru-alpha.vercel.app/',
+    linkLabel: 'Live demo',
   },
   {
     imgSrc: '/images/pdf.png',
@@ -24,24 +41,6 @@ export const workProjects = [
       'Web app to upload PDFs and explore AI-assisted reading and extraction—focused on a simple UX around document workflows.',
     tags: ['AI', 'Vercel', 'Frontend'],
     projectLink: 'https://pdf-69zi.vercel.app/',
-    linkLabel: 'Live demo',
-  },
-  {
-    imgSrc: '/images/project-5.jpg',
-    title: 'Fashion eCommerce',
-    description:
-      'E-commerce flows for a fashion brand: catalog browsing, cart logic, and a codebase organized for iterative feature work.',
-    tags: ['eCommerce', 'Full-stack'],
-    projectLink: 'https://github.com/Aziiz01/Fashion_Lakrim',
-    linkLabel: 'View on GitHub',
-  },
-  {
-    imgSrc: '/images/f2.png',
-    title: "Elite — Women's Fashion & Makeup",
-    description:
-      'Production-oriented storefront: React and Node stack with MongoDB, emphasizing product discovery, checkout paths, and deployable full-stack structure.',
-    tags: ['React', 'Node.js', 'MongoDB', 'eCommerce'],
-    projectLink: 'https://elite-ecru-alpha.vercel.app/',
     linkLabel: 'Live demo',
   },
 ];
