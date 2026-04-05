@@ -1,58 +1,99 @@
-import { useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import { useRef, useEffect, useLayoutEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
+
+const NAV_ITEMS = [
+  { label: 'Home',        link: '#home',        sectionId: 'home' },
+  { label: 'About',       link: '#about',       sectionId: 'about' },
+  { label: 'Skills',      link: '#skills',      sectionId: 'skills' },
+  { label: 'Education',   link: '#education',   sectionId: 'education' },
+  { label: 'Internships', link: '#internships', sectionId: 'internships' },
+  { label: 'Work',        link: '#work',        sectionId: 'work' },
+  { label: 'Contact',     link: '#contact',     sectionId: 'contact', extraClass: 'md:hidden' },
+];
 
 const Navbar = ({ navOpen }) => {
-  const lastActiveLink = useRef();
-  const activeBox = useRef();
+  const linkRefs    = useRef([]);
+  const activeBoxRef = useRef(null);
+  const activeIdxRef = useRef(0); // track current index to avoid redundant moves
 
-  const initActiveBox = () => {
-    if (!lastActiveLink.current || !activeBox.current) return;
-    activeBox.current.style.top = lastActiveLink.current.offsetTop + 'px';
-    activeBox.current.style.left = lastActiveLink.current.offsetLeft + 'px';
-    activeBox.current.style.width = lastActiveLink.current.offsetWidth + 'px';
-    activeBox.current.style.height = lastActiveLink.current.offsetHeight + 'px';
-  };
+  const moveBoxTo = useCallback((idx) => {
+    const link = linkRefs.current[idx];
+    const box  = activeBoxRef.current;
+    if (!link || !box) return;
 
-  useEffect(() => {
-    initActiveBox();
-    window.addEventListener('resize', initActiveBox);
-    return () => window.removeEventListener('resize', initActiveBox);
+    linkRefs.current.forEach((el) => el?.classList.remove('active'));
+    link.classList.add('active');
+    activeIdxRef.current = idx;
+
+    box.style.top    = link.offsetTop    + 'px';
+    box.style.left   = link.offsetLeft   + 'px';
+    box.style.width  = link.offsetWidth  + 'px';
+    box.style.height = link.offsetHeight + 'px';
   }, []);
 
-  const activeCurrentLink = (event) => {
-    lastActiveLink.current?.classList.remove('active');
-    event.target.classList.add('active');
-    lastActiveLink.current = event.target;
-    activeBox.current.style.top = event.target.offsetTop + 'px';
-    activeBox.current.style.left = event.target.offsetLeft + 'px';
-    activeBox.current.style.width = event.target.offsetWidth + 'px';
-    activeBox.current.style.height = event.target.offsetHeight + 'px';
-  };
+  // Init active box + keep it in sync on resize
+  useLayoutEffect(() => {
+    moveBoxTo(0);
+    const onResize = () => moveBoxTo(activeIdxRef.current);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [moveBoxTo]);
 
-  const navItems = [
-    { label: 'Home', link: '#home', className: 'nav-link active', ref: lastActiveLink },
-    { label: 'About', link: '#about', className: 'nav-link' },
-    { label: 'Skills', link: '#skills', className: 'nav-link' },
-    { label: 'Education', link: '#education', className: 'nav-link' },
-    { label: 'Internships', link: '#internships', className: 'nav-link' },
-    { label: 'Work', link: '#work', className: 'nav-link' },
-    { label: 'Contact', link: '#contact', className: 'nav-link md:hidden' },
-  ];
+  // Scroll-based section tracking
+  useEffect(() => {
+    const sections = NAV_ITEMS.map(({ sectionId }) =>
+      document.getElementById(sectionId)
+    ).filter(Boolean);
+
+    if (!sections.length) return;
+
+    const ratioMap = new Map(sections.map((s) => [s.id, 0]));
+
+    const pick = () => {
+      let bestId    = null;
+      let bestRatio = 0.05; // minimum threshold to register
+      ratioMap.forEach((ratio, id) => {
+        if (ratio > bestRatio) { bestRatio = ratio; bestId = id; }
+      });
+      if (!bestId) return;
+      const idx = NAV_ITEMS.findIndex((n) => n.sectionId === bestId);
+      if (idx !== -1 && idx !== activeIdxRef.current) moveBoxTo(idx);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => ratioMap.set(e.target.id, e.intersectionRatio));
+        pick();
+      },
+      {
+        // Account for fixed 64px header; observe generous thresholds
+        rootMargin: '-64px 0px 0px 0px',
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6],
+      }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [moveBoxTo]);
+
+  const handleClick = useCallback((e, idx) => {
+    moveBoxTo(idx);
+  }, [moveBoxTo]);
 
   return (
     <nav className={'navbar ' + (navOpen ? 'active' : '')}>
-      {navItems.map(({ label, link, className, ref }, key) => (
+      {NAV_ITEMS.map(({ label, link, extraClass = '' }, idx) => (
         <a
+          key={link}
           href={link}
-          key={key}
-          ref={ref}
-          className={className}
-          onClick={activeCurrentLink}
+          ref={(el) => { linkRefs.current[idx] = el; }}
+          className={`nav-link${extraClass ? ' ' + extraClass : ''}`}
+          onClick={(e) => handleClick(e, idx)}
         >
           {label}
         </a>
       ))}
-      <div className="active-box" ref={activeBox} />
+      <div className="active-box" ref={activeBoxRef} />
     </nav>
   );
 };
