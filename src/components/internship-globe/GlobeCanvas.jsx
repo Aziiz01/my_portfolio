@@ -110,7 +110,7 @@ const InternshipMarker = ({
       </mesh>
 
       {isSelected && (
-        <Html distanceFactor={1.4} position={[0.08, 0.08, 0]} style={{ pointerEvents: 'none' }}>
+        <Html distanceFactor={1.2} position={[0.12, 0.14, 0]} style={{ pointerEvents: 'none' }}>
           <InternshipTooltip location={location} showLink={false} />
         </Html>
       )}
@@ -208,7 +208,7 @@ GlobeModel.propTypes = {
 
 const GlobeCanvas = ({ locations, activeLocation, setHoveredLocation, setActiveLocation }) => {
   return (
-    <div className="h-[420px] w-full rounded-2xl border border-zinc-700/50 bg-gradient-to-b from-zinc-900 via-zinc-900 to-sky-950/20">
+    <div style={{ height: '420px', width: '100%', borderRadius: '14px 14px 0 0', background: 'linear-gradient(180deg, #0d1117 0%, #080e14 100%)' }}>
       <Canvas
         dpr={[1, 2]}
         camera={{ position: [0, 0, 2.9], fov: 50 }}

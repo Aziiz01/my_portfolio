@@ -1,5 +1,5 @@
 import { lazy, Suspense, useMemo, useState } from 'react';
-
+import { motion } from 'framer-motion';
 import InternshipTooltip from './internship-globe/InternshipTooltip';
 import { internshipLocations } from '../data/internshipLocations';
 
@@ -17,19 +17,55 @@ const InternshipGlobe = () => {
   return (
     <section id="internships" className="section">
       <div className="container">
-        <div className="mb-8">
-          <h2 className="headline-2 mb-3">International internship journey</h2>
-          <p className="max-w-[65ch] text-zinc-400">
-            Interactive globe highlighting where I gained professional experience across borders.
-            Rotate, zoom, and click each marker to explore the internship details.
-          </p>
-        </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: '36px' }}
+        >
+          <span className="section-label">Experience</span>
+          <h2 className="headline-2" style={{ marginTop: '8px', marginBottom: '12px' }}>
+            International internships
+          </h2>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--text-muted)', maxWidth: '58ch', lineHeight: 1.7 }}>
+            Rotate, zoom, and click each marker to explore where I gained professional experience.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.65, delay: 0.1 }}
+          style={{ display: 'grid', gap: '16px' }}
+          className="lg:!grid-cols-[1.2fr_0.8fr]"
+        >
+          {/* Globe */}
+          <div className="globe-container">
             <Suspense
               fallback={
-                <div className="h-[420px] w-full animate-pulse rounded-2xl border border-zinc-700/50 bg-zinc-800/60" />
+                <div
+                  style={{
+                    height: '420px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.75rem',
+                      color: 'var(--text-muted)',
+                      letterSpacing: '0.1em',
+                    }}
+                  >
+                    LOADING GLOBE...
+                  </div>
+                </div>
               }
             >
               <GlobeCanvas
@@ -41,90 +77,174 @@ const InternshipGlobe = () => {
             </Suspense>
           </div>
 
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-zinc-700/50 bg-zinc-800/40 p-4">
-              <div className="flex items-center justify-between">
-                <p className="text-sm text-zinc-400">Focused internship</p>
+          {/* Info panels */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+
+            {/* Selected internship */}
+            <div
+              style={{
+                borderRadius: '12px',
+                border: '1px solid var(--border-subtle)',
+                background: 'var(--bg-surface-1)',
+                padding: '16px',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.625rem',
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    color: 'var(--text-muted)',
+                  }}
+                >
+                  Selected
+                </span>
                 {activeLocation && (
                   <button
                     type="button"
                     onClick={() => setActiveLocation(null)}
-                    className="text-xs text-sky-400 hover:text-sky-300 hover:underline"
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.6875rem',
+                      color: 'var(--accent-cyan)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      letterSpacing: '0.06em',
+                    }}
                   >
                     Deselect
                   </button>
                 )}
               </div>
-              <InternshipTooltip location={selectedLocation} className="mt-3" />
+              <InternshipTooltip location={selectedLocation} />
             </div>
 
-            <div className="rounded-2xl border border-zinc-700/50 bg-zinc-800/40 p-4">
-              <p className="text-sm text-zinc-400">Locations</p>
-              <div className="mt-3 space-y-2">
-                {internshipLocations.map((location) => (
-                  <div
-                    key={location.id}
-                    className={
-                      'flex items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors ' +
-                      (activeLocation?.id === location.id
-                        ? 'border-sky-300/40 bg-sky-500/10 text-zinc-100'
-                        : 'border-zinc-700/50 bg-zinc-900/60 text-zinc-300 hover:border-zinc-500')
-                    }
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setActiveLocation(location)}
-                      className="flex flex-1 items-center gap-2 text-left"
+            {/* Location list */}
+            <div
+              style={{
+                borderRadius: '12px',
+                border: '1px solid var(--border-subtle)',
+                background: 'var(--bg-surface-1)',
+                padding: '16px',
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.625rem',
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  color: 'var(--text-muted)',
+                  marginBottom: '10px',
+                }}
+              >
+                Locations
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {internshipLocations.map((location) => {
+                  const isActive = activeLocation?.id === location.id;
+                  return (
+                    <div
+                      key={location.id}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '8px',
+                        borderRadius: '8px',
+                        border: `1px solid ${isActive ? 'rgba(0,212,255,0.25)' : 'var(--border-subtle)'}`,
+                        background: isActive ? 'rgba(0,212,255,0.05)' : 'rgba(255,255,255,0.02)',
+                        padding: '10px 12px',
+                        transition: 'border-color 0.2s ease, background 0.2s ease',
+                      }}
                     >
-                      {location.flag && (
-                        <img
-                          src={`https://flagcdn.com/w40/${location.flag}.png`}
-                          srcSet={`https://flagcdn.com/w80/${location.flag}.png 2x`}
-                          alt=""
-                          className="h-4 w-6 shrink-0 rounded-sm object-cover"
-                        />
-                      )}
-                      {location.country}{location.city ? ` - ${location.city}` : ''}
-                    </button>
-                    {location.link && (
-                      <a
-                        href={location.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="shrink-0 text-sky-400 hover:text-sky-300"
-                        title="Open link"
-                        aria-label={`Open link for ${location.company}`}
+                      <button
+                        type="button"
+                        onClick={() => setActiveLocation(location)}
+                        style={{
+                          display: 'flex',
+                          flex: 1,
+                          alignItems: 'center',
+                          gap: '10px',
+                          textAlign: 'left',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                        }}
                       >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
-                        </svg>
-                      </a>
-                    )}
-                  </div>
-                ))}
+                        {location.flag && (
+                          <img
+                            src={`https://flagcdn.com/w40/${location.flag}.png`}
+                            srcSet={`https://flagcdn.com/w80/${location.flag}.png 2x`}
+                            alt=""
+                            style={{ height: '14px', width: '20px', borderRadius: '2px', objectFit: 'cover', flexShrink: 0 }}
+                          />
+                        )}
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '0.8125rem',
+                            color: isActive ? 'var(--accent-cyan)' : 'var(--text-muted)',
+                            transition: 'color 0.2s ease',
+                          }}
+                        >
+                          {location.country}{location.city ? ` — ${location.city}` : ''}
+                        </span>
+                      </button>
+                      {location.link && (
+                        <a
+                          href={location.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          style={{ color: 'var(--text-muted)', flexShrink: 0 }}
+                          aria-label={`Open link for ${location.company}`}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
-            <p className="flex items-center gap-2 text-xs text-zinc-500">
+            {/* Hover hint */}
+            <p
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.6875rem',
+                color: 'rgba(136,136,136,0.4)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                letterSpacing: '0.04em',
+              }}
+            >
               {hoveredLocation ? (
                 <>
                   {hoveredLocation.flag && (
                     <img
                       src={`https://flagcdn.com/w40/${hoveredLocation.flag}.png`}
-                      srcSet={`https://flagcdn.com/w80/${hoveredLocation.flag}.png 2x`}
                       alt=""
-                      className="h-3.5 w-5 shrink-0 rounded-sm object-cover"
+                      style={{ height: '12px', width: '18px', borderRadius: '2px', objectFit: 'cover' }}
                     />
                   )}
-                  Hovering: {hoveredLocation.country}{hoveredLocation.city ? ` - ${hoveredLocation.city}` : ''}
+                  Hovering: {hoveredLocation.country}{hoveredLocation.city ? ` — ${hoveredLocation.city}` : ''}
                 </>
               ) : (
-                'Tip: Click a marker to focus. Click it again or use Deselect to release the view and rotate freely.'
+                '// Click a marker to focus. Click again to release.'
               )}
             </p>
+
           </div>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

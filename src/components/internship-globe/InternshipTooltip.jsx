@@ -1,70 +1,142 @@
 import PropTypes from 'prop-types';
 
 const LinkedInIcon = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="shrink-0 text-sky-400"
-    aria-hidden
-  >
-    <path
-      d="M5.75 3C4.24011 3 3 4.24011 3 5.75V18.25C3 19.7599 4.24011 21 5.75 21H18.25C19.7599 21 21 19.7599 21 18.25V5.75C21 4.24011 19.7599 3 18.25 3H5.75ZM5.75 4.5H18.25C18.9491 4.5 19.5 5.05089 19.5 5.75V18.25C19.5 18.9491 18.9491 19.5 18.25 19.5H5.75C5.05089 19.5 4.5 18.9491 4.5 18.25V5.75C4.5 5.05089 5.05089 4.5 5.75 4.5ZM7.75 6.5C7.41848 6.5 7.10054 6.6317 6.86612 6.86612C6.6317 7.10054 6.5 7.41848 6.5 7.75C6.5 8.08152 6.6317 8.39946 6.86612 8.63388C7.10054 8.8683 7.41848 9 7.75 9C8.08152 9 8.39946 8.8683 8.63388 8.63388C8.8683 8.39946 9 8.08152 9 7.75C9 7.41848 8.8683 7.10054 8.63388 6.86612C8.39946 6.6317 8.08152 6.5 7.75 6.5ZM7 10C6.7235 10 6.5 10.2235 6.5 10.5V17C6.5 17.2765 6.7235 17.5 7 17.5H8.5C8.7765 17.5 9 17.2765 9 17V10.5C9 10.2235 8.7765 10 8.5 10H7ZM10.5 10C10.2235 10 10 10.2235 10 10.5V17C10 17.2765 10.2235 17.5 10.5 17.5H12C12.2765 17.5 12.5 17.2765 12.5 17V13.25C12.5 12.5605 13.0605 12 13.75 12C14.4395 12 15 12.5605 15 13.25V17C15 17.2765 15.2235 17.5 15.5 17.5H17C17.2765 17.5 17.5 17.2765 17.5 17V13C17.5 11.3455 16.1545 10 14.5 10C13.731 10 13.0315 10.293 12.5 10.7705V10.5C12.5 10.2235 12.2765 10 12 10H10.5Z"
-      fill="currentColor"
-    />
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+    <path d="M5.75 3C4.24 3 3 4.24 3 5.75v12.5C3 19.76 4.24 21 5.75 21h12.5C19.76 21 21 19.76 21 18.25V5.75C21 4.24 19.76 3 18.25 3H5.75ZM7.75 6.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM7 10h1.5v7H7v-7Zm3.5 0H12v.77A2.5 2.5 0 0 1 14 10c1.65 0 3 1.35 3 3v4h-1.5v-3.75a1.25 1.25 0 0 0-2.5 0V17H11.5v-6.5c0-.28-.22-.5-.5-.5H10.5Z" />
   </svg>
 );
 
-const InternshipTooltip = ({ location, compact = false, showLink = true, className = '' }) => {
+const InternshipTooltip = ({ location, compact = false, showLink = true }) => {
   if (!location) return null;
-
   const badges = location.badges || [];
 
   return (
     <div
-      className={
-        'min-w-[210px] max-w-[min(280px,80vw)] rounded-xl border border-sky-300/20 bg-zinc-900/92 p-2.5 text-[11px] leading-4 text-zinc-100 shadow-[0_0_30px_rgba(56,189,248,0.18)] backdrop-blur-sm ' +
-        className
-      }
+      style={{
+        minWidth: '220px',
+        maxWidth: '280px',
+        background: 'rgba(8, 10, 14, 0.92)',
+        border: '1px solid rgba(0, 212, 255, 0.25)',
+        borderRadius: '8px',
+        padding: '14px 16px',
+        boxShadow: '0 0 0 1px rgba(0,212,255,0.06), 0 8px 32px rgba(0,0,0,0.7), 0 0 24px rgba(0,212,255,0.06)',
+        backdropFilter: 'blur(16px)',
+        fontFamily: 'JetBrains Mono, monospace',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
     >
-      <p className="flex items-center gap-2 text-xs font-semibold text-sky-300">
+      {/* Top cyan accent bar */}
+      <div style={{
+        position: 'absolute',
+        top: 0, left: 0, right: 0,
+        height: '2px',
+        background: 'linear-gradient(90deg, #00d4ff 0%, transparent 100%)',
+      }} />
+
+      {/* Location header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
         {location.flag && (
           <img
             src={`https://flagcdn.com/w40/${location.flag}.png`}
             srcSet={`https://flagcdn.com/w80/${location.flag}.png 2x`}
             alt=""
-            className="h-4 w-6 shrink-0 rounded-sm object-cover"
+            style={{ height: '13px', width: '19px', borderRadius: '2px', objectFit: 'cover', flexShrink: 0, opacity: 0.9 }}
           />
         )}
-        {location.country}{location.city ? ` - ${location.city}` : ''}
+        <span style={{
+          fontSize: '0.7rem',
+          fontWeight: 600,
+          color: '#00d4ff',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+        }}>
+          {location.country}{location.city ? ` / ${location.city}` : ''}
+        </span>
+      </div>
+
+      {/* Role */}
+      <p style={{
+        fontSize: '0.875rem',
+        fontWeight: 700,
+        color: '#e8e8e8',
+        marginBottom: '3px',
+        lineHeight: 1.3,
+        fontFamily: 'Syne, sans-serif',
+        letterSpacing: '-0.01em',
+      }}>
+        {location.title}
       </p>
-      <p className="mt-1 text-zinc-200">{location.title}</p>
-      <p className="mt-0.5 text-zinc-400">{location.company}</p>
-      {!compact && <p className="mt-1 text-zinc-300">Year: {location.year}</p>}
+
+      {/* Company + year row */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+        <p style={{ fontSize: '0.75rem', color: '#888', margin: 0 }}>
+          {location.company}
+        </p>
+        {!compact && (
+          <span style={{
+            fontSize: '0.65rem',
+            color: 'rgba(0,212,255,0.5)',
+            letterSpacing: '0.1em',
+            whiteSpace: 'nowrap',
+          }}>
+            {location.year}
+          </span>
+        )}
+      </div>
+
+      {/* Badges */}
       {badges.length > 0 && (
-        <div className="mt-3 space-y-2 border-t border-zinc-700/60 pt-2.5">
+        <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {badges.map((badge, i) => (
             <div
               key={i}
-              className="flex items-start gap-2 rounded-lg bg-sky-500/5 px-2 py-1.5 text-[10px] leading-snug text-zinc-300"
+              style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '7px',
+                background: 'rgba(0,212,255,0.05)',
+                border: '1px solid rgba(0,212,255,0.12)',
+                borderRadius: '5px',
+                padding: '6px 9px',
+                fontSize: '0.68rem',
+                color: '#a0a0a0',
+                lineHeight: 1.5,
+              }}
             >
-              {badge.icon === 'linkedin' && <LinkedInIcon />}
+              {badge.icon === 'linkedin' && (
+                <span style={{ color: '#00d4ff', marginTop: '1px', flexShrink: 0 }}>
+                  <LinkedInIcon />
+                </span>
+              )}
               <span>{badge.text}</span>
             </div>
           ))}
         </div>
       )}
+
+      {/* Link */}
       {location.link && showLink && (
         <a
           href={location.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-sky-400 hover:text-sky-300 hover:underline"
+          style={{
+            marginTop: '12px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px',
+            fontSize: '0.7rem',
+            color: '#00d4ff',
+            textDecoration: 'none',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.color = '#00ffd5'}
+          onMouseLeave={(e) => e.currentTarget.style.color = '#00d4ff'}
         >
           Visit link
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>
             <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
           </svg>
         </a>
@@ -80,15 +152,12 @@ InternshipTooltip.propTypes = {
     title: PropTypes.string.isRequired,
     company: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
-    badges: PropTypes.arrayOf(
-      PropTypes.shape({ text: PropTypes.string.isRequired, icon: PropTypes.string })
-    ),
+    badges: PropTypes.arrayOf(PropTypes.shape({ text: PropTypes.string.isRequired, icon: PropTypes.string })),
     link: PropTypes.string,
-    flag: PropTypes.string
+    flag: PropTypes.string,
   }),
   compact: PropTypes.bool,
   showLink: PropTypes.bool,
-  className: PropTypes.string
 };
 
 export default InternshipTooltip;
