@@ -152,7 +152,7 @@ const SkillMap = ({ skills }) => {
                         : 'border-zinc-700/60 bg-zinc-800/60 text-zinc-300 hover:border-zinc-500')
                     }
                   >
-                    <img src={skill.imgSrc} alt="" className="h-4 w-4 white-svg" />
+                    <img src={skill.imgSrc} alt="" className="h-4 w-4" />
                     {skill.label}
                   </button>
                 ))}
@@ -173,7 +173,7 @@ const SkillMap = ({ skills }) => {
               >
                 <p className="text-xs uppercase tracking-wide text-sky-300/90">{activeSkill.category}</p>
                 <div className="mt-2 flex items-center gap-2">
-                  <img src={activeSkill.imgSrc} alt="" className="h-5 w-5 white-svg" />
+                  <img src={activeSkill.imgSrc} alt="" className="h-5 w-5" />
                   <h4 className="text-xl font-semibold text-zinc-100">{activeSkill.label}</h4>
                 </div>
                 <p className="mt-2 text-sm text-zinc-300">{activeSkill.description}</p>

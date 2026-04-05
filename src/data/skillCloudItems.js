@@ -40,7 +40,7 @@ export const skillCloudItems = [
   { imgSrc: '/images/official-logos/cloudflare-color.svg', label: 'Cloudflare' },
 
   { imgSrc: '/images/official-logos/openai.svg', label: 'OpenAI' },
-  { imgSrc: '/images/official-logos/chatgpt.svg', label: 'ChatGPT' },
+ // { imgSrc: '/images/official-logos/chatgpt.svg', label: 'ChatGPT' },
 
   { imgSrc: '/images/official-logos/git.svg', label: 'Git' },
   { imgSrc: '/images/official-logos/github.svg', label: 'GitHub' },

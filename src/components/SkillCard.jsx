@@ -24,7 +24,7 @@ const SkillCard = ({
           width={32}
           height={32}
           alt={label}
-          className="white-svg"
+          className=""
         />
       </figure>
 

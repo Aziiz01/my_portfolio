@@ -2,7 +2,7 @@ import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import './skill-cloud.css';
 
-const TILE_BG = '#FDF9F0';
+const TILE_BG = '#f4f1eb';
 
 /** Balanced column count so the last row is not a single tiny row (works well for ~15–40 items). */
 function pickCols(count) {
@@ -13,12 +13,12 @@ function pickCols(count) {
 }
 
 function buildStaggeredLayout(count, opts = {}) {
-  const colStep = opts.colStep ?? 210;
-  const rowStep = opts.rowStep ?? 118;
-  const offset = opts.offset ?? 105;
+  const colStep = opts.colStep ?? 192;
+  const rowStep = opts.rowStep ?? 112;
+  const offset = opts.offset ?? 96;
   const colsPerRow = opts.colsPerRow ?? pickCols(count);
-  const pad = opts.pad ?? 48;
-  const maxTile = opts.maxTile ?? 132;
+  const pad = opts.pad ?? 44;
+  const maxTile = opts.maxTile ?? 122;
 
   const positions = [];
   for (let i = 0; i < count; i++) {
@@ -36,16 +36,20 @@ function buildStaggeredLayout(count, opts = {}) {
   return { positions, canvasW, canvasH, colsPerRow, maxTile };
 }
 
-function tileDiameter(left, top, canvasW, canvasH, maxTile) {
+const TILE_VARIANTS = [1.0, 0.88, 0.95, 0.82, 0.97, 0.90, 0.85];
+
+function tileDiameter(left, top, canvasW, canvasH, maxTile, index) {
   const half = maxTile / 2;
   const cx = canvasW / 2;
   const cy = canvasH / 2;
   const px = left + half;
   const py = top + half;
   const d = Math.hypot(px - cx, py - cy);
-  if (d < 300) return maxTile;
-  if (d < 460) return Math.round(maxTile * 0.82);
-  return Math.round(maxTile * 0.68);
+  let base;
+  if (d < 260) base = maxTile;
+  else if (d < 420) base = Math.round(maxTile * 0.86);
+  else base = Math.round(maxTile * 0.74);
+  return Math.round(base * TILE_VARIANTS[index % TILE_VARIANTS.length]);
 }
 
 function clampPan(x, y, frameW, frameH, canvasW, canvasH) {
@@ -176,7 +180,7 @@ export default function SkillToolsCloud({ items }) {
         >
           {displayItems.map((item, i) => {
             const { left, top } = positions[i] ?? positions[positions.length - 1];
-            const diameter = tileDiameter(left, top, canvasW, canvasH, maxTile);
+            const diameter = tileDiameter(left, top, canvasW, canvasH, maxTile, i);
             const iconSize = Math.round(diameter * 0.5);
 
             return (

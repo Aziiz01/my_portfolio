@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-
 import TimelineItem from './education/TimelineItem';
 import GraduationCard from './education/GraduationCard';
 import { educationData } from '../data/educationData';
@@ -9,37 +8,76 @@ const EducationSection = () => {
   const timelineRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
-    offset: ['start 80%', 'end 25%']
+    offset: ['start 80%', 'end 25%'],
   });
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section id="education" className="section">
       <div className="container">
-        <div className="mb-10">
-          <h2 className="headline-2 mb-3">Education & Academic Honors</h2>
-          <p className="max-w-[70ch] text-zinc-400">
-            A 5-year engineering journey at ESPRIT School of Engineering, from core computer science
-            foundations to advanced system design, internships, and graduation with honors.
-          </p>
-        </div>
 
-        <div ref={timelineRef} className="relative space-y-6">
-          <div className="absolute bottom-0 left-3 top-0 w-px bg-zinc-700/70 md:left-[150px]" aria-hidden />
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: '40px' }}
+        >
+          <span className="section-label">Education</span>
+          <h2
+            className="headline-2"
+            style={{ marginTop: '8px', marginBottom: '12px' }}
+          >
+            Academic journey
+          </h2>
+          <p
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.875rem',
+              color: 'var(--text-muted)',
+              maxWidth: '60ch',
+              lineHeight: 1.7,
+            }}
+          >
+            5-year engineering program at ESPRIT — from CS foundations to systems design,
+            internships, and graduation with honors.
+          </p>
+        </motion.div>
+
+        {/* Timeline */}
+        <div ref={timelineRef} style={{ position: 'relative' }}>
+          {/* Timeline base line */}
+          <div className="timeline-line" aria-hidden />
+
+          {/* Animated progress line */}
           <motion.div
-            className="absolute left-3 top-0 w-px origin-top bg-gradient-to-b from-sky-300 via-sky-400 to-sky-500 md:left-[150px]"
-            style={{ scaleY: lineScaleY }}
+            style={{
+              position: 'absolute',
+              left: '20px',
+              top: 0,
+              width: '1px',
+              scaleY: lineScaleY,
+              transformOrigin: 'top',
+              background: 'linear-gradient(to bottom, var(--accent-cyan), var(--accent-teal))',
+              boxShadow: '0 0 8px rgba(0,212,255,0.4)',
+            }}
+            className="md:!left-[160px]"
             aria-hidden
           />
 
-          {educationData.timeline.map((item, index) => (
-            <TimelineItem key={item.id} item={item} index={index} />
-          ))}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+            {educationData.timeline.map((item, index) => (
+              <TimelineItem key={item.id} item={item} index={index} />
+            ))}
+          </div>
         </div>
 
-        <div className="mt-10">
+        {/* Graduation card */}
+        <div style={{ marginTop: '40px' }}>
           <GraduationCard education={educationData} />
         </div>
+
       </div>
     </section>
   );
