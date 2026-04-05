@@ -24,7 +24,7 @@ export const internshipLocations = [
     company: 'RV Websolutions',
     title: 'Software Engineering Intern',
     year: '2025',
-    badges: [{ text: '1 year: Longest internship', icon: null }],
+    badges: [{ text: '1 year: International internship', icon: null }],
     link: 'https://www.rvwebsolutions.nl/'
 
 
