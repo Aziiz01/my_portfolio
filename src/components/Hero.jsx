@@ -271,7 +271,7 @@ const Hero = () => {
               }}
             >
               <img
-                src="/images/mepng.png"
+                src="/images/me.png"
                 alt="Mohamed Aziz — software engineer"
                 style={{
                   width: '100%',
