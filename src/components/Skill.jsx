@@ -9,7 +9,7 @@ const skillGroups = [
   {
     category: 'Backend',
     color: '#00ffd5',
-    skills: ['Node.js', 'Express', 'Spring Boot', 'Symfony / PHP', 'REST APIs', 'WebSockets'],
+    skills: ['Node.js', 'Express', 'Spring Boot', 'Symfony / PHP', 'REST APIs', 'WebSockets,', 'Microservices'],
   },
   {
     category: 'AI / ML',

@@ -35,6 +35,15 @@ export const workProjects = [
     linkLabel: 'Live demo',
   },
   {
+    imgSrc: '/images/freeAI.png',
+    title: 'FreeAI — AI Tools Showcase',
+    description:
+      'Next.js 13 showcase app bundling 8 prompt-driven AI tools in one clean interface: image generation, YouTube script & title generators, Instagram caption generator, text humanizer, domain name generator, blog idea planner, and code generator. Built for local demos and fast experimentation.',
+    tags: ['Next.js', 'TypeScript', 'OpenAI API', 'Tailwind CSS'],
+    projectLink: 'https://ai-lemon-ten.vercel.app/',
+    linkLabel: 'Live demo',
+  },
+  {
     imgSrc: '/images/pdf.png',
     title: 'AI PDF Reader',
     description:
