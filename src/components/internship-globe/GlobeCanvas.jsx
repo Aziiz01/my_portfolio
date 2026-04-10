@@ -19,7 +19,7 @@ const latLngToVector3 = (lat, lng, radius = 1) => {
 
 const FocusCamera = ({ activeLocation, controlsRef }) => {
   const { camera } = useThree();
-  const targetPositionRef = useRef(new THREE.Vector3(0, 0, 2.9));
+  const targetPositionRef = useRef(new THREE.Vector3(0, 0, 3.4));
 
   useFrame((_, delta) => {
     if (!activeLocation) return;
@@ -208,10 +208,10 @@ GlobeModel.propTypes = {
 
 const GlobeCanvas = ({ locations, activeLocation, setHoveredLocation, setActiveLocation }) => {
   return (
-    <div style={{ height: '420px', width: '100%', borderRadius: '14px 14px 0 0', background: 'linear-gradient(180deg, #0d1117 0%, #080e14 100%)' }}>
+    <div style={{ flex: 1, minHeight: '420px', width: '100%', borderRadius: '14px 14px 0 0', background: 'linear-gradient(180deg, #0d1117 0%, #080e14 100%)' }}>
       <Canvas
         dpr={[1, 2]}
-        camera={{ position: [0, 0, 2.9], fov: 50 }}
+        camera={{ position: [0, 0, 3.3], fov: 50 }}
         gl={{ antialias: true, powerPreference: 'high-performance', alpha: true }}
       >
         <Suspense fallback={null}>

@@ -120,6 +120,59 @@ const InternshipGlobe = () => {
                 )}
               </div>
               <InternshipTooltip location={selectedLocation} />
+
+              {/* What I did */}
+              {selectedLocation?.tasks?.length > 0 && (
+                <div style={{ marginTop: '16px' }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '10px',
+                  }}>
+                    <span style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.625rem',
+                      letterSpacing: '0.18em',
+                      textTransform: 'uppercase',
+                      color: 'var(--accent-cyan)',
+                    }}>
+                      What I did
+                    </span>
+                    <div style={{
+                      flex: 1,
+                      height: '1px',
+                      background: 'linear-gradient(90deg, rgba(0,212,255,0.2) 0%, transparent 100%)',
+                    }} />
+                  </div>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '7px' }}>
+                    {selectedLocation.tasks.map((task, i) => (
+                      <li
+                        key={i}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '9px',
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.775rem',
+                          color: 'var(--text-muted)',
+                          lineHeight: 1.55,
+                        }}
+                      >
+                        <span style={{
+                          marginTop: '6px',
+                          flexShrink: 0,
+                          width: '4px',
+                          height: '4px',
+                          borderRadius: '50%',
+                          background: 'rgba(0,212,255,0.5)',
+                        }} />
+                        {task}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* Location list */}

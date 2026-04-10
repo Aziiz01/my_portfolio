@@ -682,6 +682,9 @@ html {
   border: 1px solid var(--border-subtle);
   background: linear-gradient(180deg, var(--bg-surface-1) 0%, rgba(0,12,20,0.9) 100%);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
 }
 
 /* ------------------------------------------ *\
