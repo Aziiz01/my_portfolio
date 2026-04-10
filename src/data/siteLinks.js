@@ -7,6 +7,6 @@ export const SITE_ORIGIN = 'https://aziiz01.github.io/my_portfolio';
 export const SITE_LINKS = {
   github: 'https://github.com/Aziiz01',
   linkedin: 'https://www.linkedin.com/in/mohamed-aziz-nacib/',
-  resume: '/images/Mohamed Aziz Nacib CV.pdf',
+  resume: '/images/Mohamed_Aziz_Nacib_C.V.pdf',
   contact: '#contact',
 };

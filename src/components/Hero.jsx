@@ -182,7 +182,7 @@ const Hero = () => {
             >
               <a
                 href={SITE_LINKS.resume}
-                download="Mohamed-Aziz-Nacib-CV.pdf"
+                download="Mohamed_Aziz_Nacib_C.V.pdf"
                 className="btn btn-primary"
               >
                 Resume
@@ -340,7 +340,7 @@ const Hero = () => {
                 boxShadow: '0 0 24px rgba(0,255,213,0.08)',
               }}
             >
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-teal)', letterSpacing: '0.1em' }}>INTERNSHIP</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-teal)', letterSpacing: '0.1em' }}>EXPERIENCE</div>
               <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-primary)' }}>Netherlands</div>
             </motion.div>
           </motion.div>
