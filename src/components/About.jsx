@@ -14,6 +14,7 @@ const facts = [
   { prefix: '02', text: 'International experience: Tunisia & Netherlands. Production systems, real users.' },
   { prefix: '03', text: 'Full-stack by default. Obsessive about clean APIs and composable frontends.' },
   { prefix: '04', text: 'Based in Tunisia. Builder mindset. Moves fast, ships deliberately.' },
+  { prefix: '05', text: 'Lately spending most time on backend systems for regulated and structured-data domains — multi-tenant SaaS, audit trails, clean architecture in .NET and the JVM ecosystem.' },
 ];
 
 const About = () => {

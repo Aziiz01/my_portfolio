@@ -21,6 +21,7 @@ Personal portfolio site for Mohamed Aziz Nacib, a Computer Science Engineering g
 
 ## Featured Projects
 
+- **disclosure-engine** — Multi-tenant SaaS API for structured financial disclosures. .NET 8, Clean Architecture, EF Core, XBRL parser. *(.NET 8, EF Core, PostgreSQL, MinIO, Docker)*
 - **Flous** — 3D Tunisian dinar visualization. Enter an amount and denomination and watch stacks of bills build in a Three.js scene with GSAP-driven animation. *(React, Three.js, GSAP, Tailwind CSS)*
 - **ResuMatch** — AI-powered résumé vs. job description matcher. Surfaces skill overlap, suggests CV improvements via Hugging Face inference, and includes a LaTeX CV builder with live HTML preview. *(Next.js, TypeScript, Hugging Face)*
 - **Elite** — Production-oriented women's fashion & makeup storefront with product discovery and checkout. *(React, Node.js, MongoDB)*
