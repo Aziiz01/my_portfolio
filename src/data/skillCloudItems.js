@@ -23,6 +23,10 @@ export const skillCloudItems = [
   { imgSrc: '/images/official-logos/express.svg', label: 'Express' },
   { imgSrc: '/images/official-logos/springboot.svg', label: 'Spring Boot' },
   { imgSrc: '/images/official-logos/symfony.svg', label: 'Symfony' },
+  // TODO: add ASP.NET Core logo at public/images/official-logos/aspnetcore.svg
+  { imgSrc: '/images/official-logos/aspnetcore.svg', label: 'ASP.NET Core' },
+  // TODO: add EF Core logo at public/images/official-logos/efcore.svg
+  { imgSrc: '/images/official-logos/efcore.svg', label: 'EF Core' },
   { imgSrc: '/images/official-logos/nextjs.svg', label: 'Next.js' },
   { imgSrc: '/images/official-logos/vue.svg', label: 'Vue.js' },
   { imgSrc: '/images/official-logos/tailwindcss.svg', label: 'Tailwind CSS' },
@@ -31,6 +35,8 @@ export const skillCloudItems = [
   { imgSrc: '/images/official-logos/framer.svg', label: 'Framer Motion' },
   { imgSrc: '/images/official-logos/postcss.svg', label: 'PostCSS' },
 
+  // TODO: add MinIO logo at public/images/official-logos/minio.svg
+  { imgSrc: '/images/official-logos/minio.svg', label: 'MinIO' },
   { imgSrc: '/images/official-logos/mongodb.svg', label: 'MongoDB' },
   { imgSrc: '/images/official-logos/postgresql.svg', label: 'PostgreSQL' },
   { imgSrc: '/images/official-logos/mysql.svg', label: 'MySQL' },
