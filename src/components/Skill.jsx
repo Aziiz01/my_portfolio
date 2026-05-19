@@ -9,7 +9,7 @@ const skillGroups = [
   {
     category: 'Backend',
     color: '#00ffd5',
-    skills: ['Node.js', 'Express', 'Spring Boot', 'Symfony / PHP', 'REST APIs', 'WebSockets,', 'Microservices'],
+    skills: ['Node.js', 'Express', '.NET / ASP.NET Core', 'EF Core', 'Spring Boot', 'Symfony / PHP', 'REST APIs', 'WebSockets,', 'Microservices'],
   },
   {
     category: 'AI / ML',
@@ -19,7 +19,7 @@ const skillGroups = [
   {
     category: 'Databases',
     color: '#ff9f43',
-    skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Firebase'],
+    skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Firebase', 'MinIO'],
   },
   {
     category: 'DevOps & Cloud',
