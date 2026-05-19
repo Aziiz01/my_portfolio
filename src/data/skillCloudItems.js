@@ -14,6 +14,8 @@ export const skillCloudItems = [
   { imgSrc: '/images/official-logos/php.svg', label: 'PHP' },
   { imgSrc: '/images/official-logos/python.svg', label: 'Python' },
   { imgSrc: '/images/official-logos/cplusplus.svg', label: 'C++' },
+  // TODO: add C# / .NET logo asset at public/images/official-logos/dotnet.svg
+  { imgSrc: '/images/official-logos/dotnet.svg', label: 'C# / .NET' },
 
   { imgSrc: '/images/official-logos/react.svg', label: 'React' },
   { imgSrc: '/images/official-logos/nodejs.svg', label: 'Node.js' },
