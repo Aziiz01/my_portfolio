@@ -9,13 +9,14 @@
 export const workProjects = [
   {
     // TODO: add screenshot once Day 2 ships — drop the file at public/images/projects/disclosure-engine.png
-    imgSrc: '/images/projects/disclosure-engine.png',
+    imgSrc: '/images/projects/disclosure.gif',
     title: 'disclosure-engine',
     description:
       'Multi-tenant SaaS API for structured financial disclosures — .NET 8 with Clean Architecture, EF Core tenant isolation, audit log via SaveChangesInterceptor, and an XBRL instance-document parser.',
     tags: ['.NET 8', 'ASP.NET Core', 'EF Core', 'PostgreSQL', 'Clean Architecture', 'Multi-Tenant SaaS', 'MinIO', 'Docker'],
     projectLink: 'https://github.com/Aziiz01/disclosure-engine',
     linkLabel: 'GitHub',
+    imgStyle: { objectFit: 'contain', background: 'var(--bg-surface-2)' },
   },
   {
     imgSrc: '/images/0405.gif',

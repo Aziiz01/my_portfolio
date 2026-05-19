@@ -84,6 +84,7 @@ const Work = () => {
                     src={project.imgSrc}
                     alt=""
                     loading="lazy"
+                    style={project.imgStyle}
                   />
                 </a>
               </div>
